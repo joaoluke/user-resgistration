@@ -1,6 +1,4 @@
-
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 import Login from './pages/login'
@@ -16,8 +14,6 @@ const App = () => {
 
   return (
     <div className="App">
-      
-       
         <Layout className="layout">
             <Header>
               <div className="logo" />
