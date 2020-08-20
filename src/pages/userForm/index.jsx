@@ -132,24 +132,36 @@ const UserForm = () => {
       scrollToFirstError
     >
          <Form.Item
-        name="nickname"
-        label={
-          <span>
-            Usuário&nbsp;
-            <Tooltip title="Do que você quer que os outros chamem você?">
-              <QuestionCircleOutlined />
-            </Tooltip>
-          </span>
-        }
+        name={['user', 'name']}
+        label="Name"
         rules={[
           {
             required: true,
-            message: 'Please input your nickname!',
-            whitespace: true,
           },
         ]}
       >
         <Input />
+      </Form.Item>
+
+        <Form.Item
+          name="nickname"
+          label={
+            <span>
+              Usuário&nbsp;
+              <Tooltip title="Do que você quer que os outros chamem você?">
+                <QuestionCircleOutlined />
+              </Tooltip>
+            </span>
+          }
+          rules={[
+            {
+              required: true,
+              message: 'Please input your nickname!',
+              whitespace: true,
+            },
+          ]}
+        >
+          <Input />
       </Form.Item>
 
       <Form.Item
