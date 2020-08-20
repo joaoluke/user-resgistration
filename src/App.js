@@ -1,4 +1,4 @@
-
+//https://ant.design/components/form/?locale=en-US#Rule // documentação rules
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
@@ -16,8 +16,7 @@ const App = () => {
 
   return (
     <div className="App">
-      
-       
+
         <Layout className="layout">
             <Header>
               <div className="logo" />
@@ -30,14 +29,14 @@ const App = () => {
             <Content style={{ padding: '0 50px' }}>
               <div className="site-layout-content">Formulario
                   <Login/>
+                  <UserForm></UserForm>
               </div>
-              
             </Content>
 
             <Footer style={{ textAlign: 'center' }}>Kenzie</Footer>
 
         </Layout>
-        {/* <UserForm></UserForm> */}
+       
         
     </div>
   );
