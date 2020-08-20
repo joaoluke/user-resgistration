@@ -1,6 +1,3 @@
-
-
-
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import 'antd/dist/antd.css';
@@ -96,9 +93,7 @@ const UserForm = () => {
   const prefixSelector = (
     <Form.Item name="prefix" noStyle>
       <Select
-        style={{
-          width: 70,
-        }}
+        style={{ width: 70 }}
       >
         <Option value="86">+86</Option>
         <Option value="87">+87</Option>
@@ -131,25 +126,37 @@ const UserForm = () => {
       }}
       scrollToFirstError
     >
-         <Form.Item
-        name="nickname"
-        label={
-          <span>
-            Usuário&nbsp;
-            <Tooltip title="Do que você quer que os outros chamem você?">
-              <QuestionCircleOutlined />
-            </Tooltip>
-          </span>
-        }
-        rules={[
-          {
-            required: true,
-            message: 'Please input your nickname!',
-            whitespace: true,
-          },
-        ]}
-      >
+    <Form.Item
+      name={['user', 'name']}
+      label="Name"
+      rules={[
+        {
+          required: true,
+        },
+      ]}
+    >
         <Input />
+      </Form.Item>
+
+        <Form.Item
+          name="nickname"
+          label={
+            <span>
+              Usuário&nbsp;
+              <Tooltip title="Do que você quer que os outros chamem você?">
+                <QuestionCircleOutlined />
+              </Tooltip>
+            </span>
+          }
+          rules={[
+            {
+              required: true,
+              message: 'Please input your nickname!',
+              whitespace: true,
+            },
+          ]}
+        >
+          <Input />
       </Form.Item>
 
       <Form.Item
@@ -180,7 +187,7 @@ const UserForm = () => {
         ]}
         hasFeedback
       >
-        <Input.Password />
+      <Input.Password />
       </Form.Item>
 
       <Form.Item
@@ -204,7 +211,7 @@ const UserForm = () => {
           }),
         ]}
       >
-        <Input.Password />
+      <Input.Password />
       </Form.Item>
 
 
