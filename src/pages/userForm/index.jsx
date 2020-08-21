@@ -1,6 +1,3 @@
-
-
-
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import 'antd/dist/antd.css';
@@ -96,9 +93,7 @@ const UserForm = () => {
   const prefixSelector = (
     <Form.Item name="prefix" noStyle>
       <Select
-        style={{
-          width: 70,
-        }}
+        style={{ width: 70 }}
       >
         <Option value="86">+86</Option>
         <Option value="87">+87</Option>
@@ -131,15 +126,15 @@ const UserForm = () => {
       }}
       scrollToFirstError
     >
-         <Form.Item
-        name={['user', 'name']}
-        label="Name"
-        rules={[
-          {
-            required: true,
-          },
-        ]}
-      >
+    <Form.Item
+      name={['user', 'name']}
+      label="Name"
+      rules={[
+        {
+          required: true,
+        },
+      ]}
+    >
         <Input />
       </Form.Item>
 
@@ -192,7 +187,7 @@ const UserForm = () => {
         ]}
         hasFeedback
       >
-        <Input.Password />
+      <Input.Password />
       </Form.Item>
 
       <Form.Item
@@ -216,7 +211,7 @@ const UserForm = () => {
           }),
         ]}
       >
-        <Input.Password />
+      <Input.Password />
       </Form.Item>
 
 
