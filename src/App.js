@@ -1,12 +1,13 @@
 import React from 'react';
 import './App.css';
 import 'antd/dist/antd.css';
-import './index.css';
+
 import { Layout, Menu, Breadcrumb } from 'antd';
 import { Link, BrowserRouter, Route } from "react-router-dom";
 
 import Login from './pages/login'
 import UserForm from './pages/userForm'
+import Users from './pages/users'
 
 
 
@@ -23,6 +24,7 @@ const App = () => {
             <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
               <Menu.Item key="1"><Link to="/userForm">Cadastre-se</Link></Menu.Item>
               <Menu.Item key="2"><Link to="/">Login</Link></Menu.Item>
+              <Menu.Item key="3"><Link to="/users">Usuários</Link></Menu.Item>
             </Menu>
           </Header>
 
@@ -30,6 +32,7 @@ const App = () => {
             <div className="site-layout-content">Formulario
             <Route path="/" exact component={Login} />
             <Route path="/userForm" exact component={UserForm} />
+            <Route path="/users" exact component={Users} />
             </div>
           </Content>
 

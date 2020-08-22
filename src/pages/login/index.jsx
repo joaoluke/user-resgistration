@@ -16,13 +16,13 @@ const Login = () => {
   const [requestError, setRequestError] = useState("")
 
   const onFinish = (values) => {
+    console.log(token)
     console.log('Received values of form: ', values);
     axios     // se login for sucesso executa o then, se possui erro executa o catch
-      .post("https://ka-users-api.herokuapp.com/authenticate",values) //rafa
+      .post("https://ka-users-api.herokuapp.com/authenticate",values) 
       .then((res) => {
-        console.log(res)
-        setToken(res.auth_token);
-        localStorage.setItem("token", res.auth_token)
+        console.log(res);
+        localStorage.setItem("token", res.data.auth_token); //Grava o token no local "HD da maquina"
         setRequestError("")
       })
       
