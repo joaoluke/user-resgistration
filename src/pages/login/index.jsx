@@ -10,20 +10,23 @@ import './index.css'
 
 import axios from 'axios';
 
-const Login = () => {
+const Login = ({token, setToken, SetAuthenticated, authenticated}) => {
 
-  const [token, setToken] = useState(localStorage.getItem("token")); 
   const [requestError, setRequestError] = useState("") //  Erro na requisição 
+  
 
   const onFinish = (values) => {
     console.log(token)
     console.log('Received values of form: ', values);
     axios     // se login for sucesso executa o then, se possui erro executa o catch
       .post("https://ka-users-api.herokuapp.com/authenticate",values) 
-      .then((res) => {
+      .then((res) => {  
         console.log(res);
-        localStorage.setItem("token", res.data.auth_token); //Grava o token no local "HD da maquina"
-        setRequestError("")
+        // setToken(res.data.auth_token);
+        //?? este setItem como de fosse o setToken ??
+        localStorage.setItem("token", res.data.auth_token); //Grava o token(q é um objeto) no local "HD da maquina"
+        setRequestError("");
+        SetAuthenticated(true);
       })
       
       .catch((error) => { // catch - Trata os erros
@@ -32,8 +35,12 @@ const Login = () => {
         console.log(error.message) // mensagem generica erro 
         console.log(error.response.status)  // ex. erro 401
         if (error.response.status === 401){
-          setRequestError("Credenciais Inválidas")
-        }else setRequestError ("Erro requisição")
+          setRequestError("Credenciais Inválidas");
+          SetAuthenticated(false);
+        } else {
+            setRequestError ("Erro requisição");
+            SetAuthenticated(false);
+          }
       })
   };
 
