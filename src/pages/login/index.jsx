@@ -13,7 +13,7 @@ import axios from 'axios';
 const Login = () => {
 
   const [token, setToken] = useState(localStorage.getItem("token")); 
-  const [requestError, setRequestError] = useState("")
+  const [requestError, setRequestError] = useState("") //  Erro na requisição 
 
   const onFinish = (values) => {
     console.log(token)
@@ -82,23 +82,9 @@ const Login = () => {
         </Button>
       </Form.Item>
 
-
-
-
-
       <Form.Item>
-       
         <div> {requestError} </div>
-        
-       
       </Form.Item>
-
-
-
-
-
-
-      
       
     </Form>
   );
