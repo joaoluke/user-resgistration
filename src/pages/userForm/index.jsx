@@ -50,27 +50,16 @@ const UserForm = () => {
   const [form] = Form.useForm();
 
   const onFinish = values => {
-    console.log(values + "console")
-  //   fetch("https://ka-users-api.herokuapp.com/users", {
-  //     method: "POST",
-  //     headers:{
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify(values),
-  //   })
-  //   .then((res) => res.json())
-  //   .then((res) => console.log(res))
-  // };
-  axios.post("https://ka-users-api.herokuapp.com/users", {
-    "user": {
-      "name": values.user.name,
-      "user": values.nickname,
-      "email": values.email,
-      "password": values.password,
-      "password_confirmation": values.confirm
-    }
-  }).
-  then(res => console.log(res)).catch(error => console.log(error))
+    axios.post("https://ka-users-api.herokuapp.com/users", {
+      "user": {
+        "name": values.user.name,
+        "user": values.nickname,
+        "email": values.email,
+        "password": values.password,
+        "password_confirmation": values.confirm,
+      }
+    }).
+    then(console.log("sucess")).catch(error => console.log(error))
   }
   const prefixSelector = (
     <Form.Item name="prefix" noStyle>
