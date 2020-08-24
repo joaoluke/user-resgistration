@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import ReactDOM from 'react-dom';
 import './index.css';
+import { Link } from 'react-router-dom';
 import { Table, Tag, Space } from 'antd';
 import axios from 'axios';
 
@@ -8,20 +8,23 @@ import axios from 'axios';
 
 const Users = () => {
   const url = "https://ka-users-api.herokuapp.com/users";
-  const [data, setData] = useState("");
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    const id = data.id
+    console.log(data)
+  }, [data])
   
   useEffect (() => {
     axios
       .get(url, 
         { headers: {Authorization: "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo1MzYsImV4cCI6MTYyOTU1ODkwNH0.g85VIjVCsBZ2DmtQY6JC4Difliypm7fi9R5Obe7FZbg"} })
-        .then(resp => { //request bem sucedido
-          // console.log("GET")
+        .then(resp => {
           console.log(resp.data)
           setData(resp.data)
         })
-          .catch((error) => { // erro no request
-              console.log(error)
-          })
+        .catch((error) => { // erro no request
+            console.log(error)
+        })
   },[])
 
 
@@ -31,30 +34,30 @@ const Users = () => {
       title: "id",
       dataIndex: "id", //id, nome
       key: 'id',
-      render: text => <a>{text}</a>,
     },
 
     {
       title: "Nome",
       dataIndex: "name", //id, nome
       key: 'name',
-      render: text => <a>{text}</a>,
     },
 
     {
       title: "Usuário",
       dataIndex: "user", //id, nome
       key: 'user',
-      render: text => <a>{text}</a>,
     },
 
     {
       title: "E-mail",
       dataIndex: "email", //id, nome
       key: 'email',
-      render: text => <a>{text}</a>,
     },
        
+    {
+      render: id => <Link to={`/users/${id}/feedbacks/`}>Feedbacks</Link>,
+      dataIndex: 'id'
+    }
   ];
 
   return  (
