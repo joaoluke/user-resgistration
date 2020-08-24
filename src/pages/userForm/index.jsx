@@ -1,57 +1,18 @@
 import React, { useState } from 'react';
-import ReactDOM from 'react-dom';
+import axios from 'axios';
 import 'antd/dist/antd.css';
 import './index.css';
 import {
   Form,
   Input,
   Tooltip,
-  Cascader,
   Select,
-  Row,
-  Col,
-  Checkbox,
   Button,
-  AutoComplete,
 } from 'antd';
 import { QuestionCircleOutlined } from '@ant-design/icons';
 
 const { Option } = Select;
-const AutoCompleteOption = AutoComplete.Option;
-const residences = [
-  {
-    value: 'zhejiang',
-    label: 'Zhejiang',
-    children: [
-      {
-        value: 'hangzhou',
-        label: 'Hangzhou',
-        children: [
-          {
-            value: 'xihu',
-            label: 'West Lake',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    value: 'jiangsu',
-    label: 'Jiangsu',
-    children: [
-      {
-        value: 'nanjing',
-        label: 'Nanjing',
-        children: [
-          {
-            value: 'zhonghuamen',
-            label: 'Zhong Hua Men',
-          },
-        ],
-      },
-    ],
-  },
-];
+
 const formItemLayout = {
   labelCol: {
     xs: {
@@ -83,13 +44,34 @@ const tailFormItemLayout = {
   },
 };
 
+// const [ name, setName ] = useState("");
+
 const UserForm = () => {
   const [form] = Form.useForm();
 
   const onFinish = values => {
-    console.log('Received values of form: ', values);
-  };
-
+    console.log(values + "console")
+  //   fetch("https://ka-users-api.herokuapp.com/users", {
+  //     method: "POST",
+  //     headers:{
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: JSON.stringify(values),
+  //   })
+  //   .then((res) => res.json())
+  //   .then((res) => console.log(res))
+  // };
+  axios.post("https://ka-users-api.herokuapp.com/users", {
+    "user": {
+      "name": values.user.name,
+      "user": values.nickname,
+      "email": values.email,
+      "password": values.password,
+      "password_confirmation": values.confirm
+    }
+  }).
+  then(res => console.log(res)).catch(error => console.log(error))
+  }
   const prefixSelector = (
     <Form.Item name="prefix" noStyle>
       <Select
@@ -128,7 +110,7 @@ const UserForm = () => {
     >
     <Form.Item
       name={['user', 'name']}
-      label="Name"
+      label="Nome"
       rules={[
         {
           required: true,
@@ -178,7 +160,7 @@ const UserForm = () => {
 
       <Form.Item
         name="password"
-        label="Password"
+        label="Senha"
         rules={[
           {
             required: true,
@@ -192,7 +174,7 @@ const UserForm = () => {
 
       <Form.Item
         name="confirm"
-        label="Confirm Password"
+        label="Confirme a senha"
         dependencies={['password']}
         hasFeedback
         rules={[
