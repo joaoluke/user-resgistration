@@ -29,28 +29,28 @@ const Users = () => {
   const columns = [
     {
       title: "id",
-      dataIndex: "id", //id, nome
+      dataIndex: "id", 
       key: 'id',
       render: text => <a>{text}</a>,
     },
 
     {
       title: "Nome",
-      dataIndex: "name", //id, nome
+      dataIndex: "name", 
       key: 'name',
       render: text => <a>{text}</a>,
     },
 
     {
       title: "Usuário",
-      dataIndex: "user", //id, nome
+      dataIndex: "user", 
       key: 'user',
       render: text => <a>{text}</a>,
     },
 
     {
       title: "E-mail",
-      dataIndex: "email", //id, nome
+      dataIndex: "email", 
       key: 'email',
       render: text => <a>{text}</a>,
     },
