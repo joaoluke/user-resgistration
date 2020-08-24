@@ -27,7 +27,7 @@ const App = () => {
           </Header>
 
           <Content style={{ padding: '0 50px' }}>
-            <div className="site-layout-content">Formulario
+            <div className="site-layout-content">Formulário
             <Route path="/" exact component={Login} />
             <Route path="/userForm" exact component={UserForm} />
             </div>
