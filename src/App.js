@@ -32,9 +32,9 @@ const App = () => {
               <Menu.Item key="2"><Link to="/">Login</Link></Menu.Item>
               
               <Menu.Item key="3"><Link to="/newFeedbacks">Feedback</Link></Menu.Item>
-             {authenticated && <Menu.Item key="3"><Link to="/users">Usuários</Link></Menu.Item>}  
+             {/* {authenticated && <Menu.Item key="3"><Link to="/users">Usuários</Link></Menu.Item>}   */}
              {/* <Menu.Item onClick={()=>{history.push("users")}} >LOGOUT  </Menu.Item> */}
-             <Menu.Item onClick={()=>{setToken("")}} >LOGOUT  </Menu.Item>
+             
 
             </Menu>
           </Header>
@@ -67,5 +67,7 @@ const App = () => {
     </BrowserRouter>
   );
 }
+
+
 
 export default App;
