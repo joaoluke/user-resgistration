@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import { useHistory} from 'react-router-dom';
 import axios from 'axios';
 import 'antd/dist/antd.css';
-import './index.css';
+import { QuestionCircleOutlined } from '@ant-design/icons';
 import {
   Form,
   Input,
@@ -9,10 +10,8 @@ import {
   Select,
   Button,
 } from 'antd';
-import { QuestionCircleOutlined } from '@ant-design/icons';
 
 const { Option } = Select;
-
 const formItemLayout = {
   labelCol: {
     xs: {
@@ -50,7 +49,7 @@ const UserForm = () => {
 
   const [form] = Form.useForm();
   const [autoCompleteResult, setAutoCompleteResult] = useState([]);
-
+  const history = useHistory();
   const onFinish = values => {
     axios.post("https://ka-users-api.herokuapp.com/users", {
       "user": {
@@ -60,8 +59,10 @@ const UserForm = () => {
         "password": values.password,
         "password_confirmation": values.confirm,
       }
-    }).
-    then(console.log("sucess")).catch(error => console.log(error))
+    })
+    .then(console.log("sucess"))
+    .catch(error => console.log(error))
+    history.push("/")
   }
 
   const prefixSelector = (

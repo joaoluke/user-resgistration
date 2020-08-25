@@ -1,36 +1,30 @@
 // https://ant.design/components/form/  formulario Log in
 import React, { useState } from 'react';
 
-import ReactDOM from 'react-dom';
+import { useHistory } from 'react-router-dom';
 import 'antd/dist/antd.css';
 import './index.css';
-import { Form, Input, Button, Checkbox } from 'antd';
+import { Form, Input, Button } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import './index.css'
 
 import axios from 'axios';
 
 const Login = ({token, setToken, SetAuthenticated, authenticated}) => {
-
+  const history = useHistory();
   const [requestError, setRequestError] = useState("") //  Erro na requisição 
   
 
   const onFinish = (values) => {
-    console.log(token)
-    console.log('Received values of form: ', values);
-    axios     // se login for sucesso executa o then, se possui erro executa o catch
+    axios 
       .post("https://ka-users-api.herokuapp.com/authenticate",values) 
-      .then((res) => {  
-        console.log(res);
-        // setToken(res.data.auth_token);
-        //?? este setItem como de fosse o setToken ??
+      .then((res) => { 
         localStorage.setItem("token", res.data.auth_token); //Grava o token(q é um objeto) no local "HD da maquina"
         setRequestError("");
         SetAuthenticated(true);
       })
       
-      .catch((error) => { // catch - Trata os erros
-        //debugger;
+      .catch((error) => {
         console.log(error.response.data); //retorna o erro especifico, error é um objeto
         console.log(error.message) // mensagem generica erro 
         console.log(error.response.status)  // ex. erro 401
@@ -42,60 +36,64 @@ const Login = ({token, setToken, SetAuthenticated, authenticated}) => {
             SetAuthenticated(false);
           }
       })
+      history.push("/users/")
   };
 
   return (
-    <Form
-      name="normal_login"
-      className="login-form"
-      initialValues={{
-        remember: true,
-      }}
-      onFinish={onFinish}
-    >
-      <Form.Item
-        name="user"
-        rules={[
-          {
-            required: true,
-            message: 'Por favor, insira seu nome de usuário!',
-          },
-        ]}
+    <>
+      <h1>Login</h1>
+      <Form
+        name="normal_login"
+        className="login-form"
+        initialValues={{
+          remember: true,
+        }}
+        onFinish={onFinish}
       >
-        <Input prefix={<UserOutlined 
-        className="site-form-item-icon" />} 
-        placeholder="Usuário" />
-      </Form.Item>
+        <Form.Item
+          name="user"
+          rules={[
+            {
+              required: true,
+              message: 'Por favor, insira seu nome de usuário!',
+            },
+          ]}
+        >
+          <Input prefix={<UserOutlined 
+          className="site-form-item-icon" />} 
+          placeholder="Usuário" />
+        </Form.Item>
 
-      <Form.Item
-        name="password"
-        rules={[
-          {
-            required: true,
-            message: 'Por favor, insira sua senha!',
-          },
-        ]}
-      >
+        <Form.Item
+          name="password"
+          rules={[
+            {
+              required: true,
+              message: 'Por favor, insira sua senha!',
+            },
+          ]}
+        >
+          
+          <Input.Password
+            prefix={<LockOutlined className="site-form-item-icon" />}
+            type="password"
+            placeholder="Password"
+          />
+        </Form.Item>
+
+
+        <Form.Item>
+          <Button type="primary" htmlType="submit" className="login-form-button">
+            Log in
+          </Button>
+        </Form.Item>
+
+        <Form.Item>
+          <div> {requestError} </div>
+        </Form.Item>
         
-        <Input.Password
-          prefix={<LockOutlined className="site-form-item-icon" />}
-          type="password"
-          placeholder="Password"
-        />
-      </Form.Item>
-
-
-      <Form.Item>
-        <Button type="primary" htmlType="submit" className="login-form-button">
-          Log in
-        </Button>
-      </Form.Item>
-
-      <Form.Item>
-        <div> {requestError} </div>
-      </Form.Item>
-      
-    </Form>
+      </Form>
+    </>
   );
 };
 
