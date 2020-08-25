@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { Form, Input, Button, Select } from 'antd';
 import axios from 'axios';
-import Feedback from '../feedbacks';
 
 const { Option } = Select;
 const layout = {
@@ -25,14 +24,14 @@ const NewFeedback = () => {
     const [ name, setName ] = useState("");
     const [ comment, setComment ] = useState("");
     const history = useHistory();
+    const params = useParams();
 
     const setField = (e, field) => {
         field(e.target.value)
     }
 
     const onFinish = values => {
-        console.log(values)
-        axios.post("https://ka-users-api.herokuapp.com/users/735/feedbacks", 
+        axios.post(`https://ka-users-api.herokuapp.com/users/735/feedbacks`, 
             {
                 
                 name,

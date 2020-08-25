@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Link, Switch, Route } from 'react-router-dom';
+import { Link, Switch, Route, useParams } from 'react-router-dom';
 import { Table, Button } from 'antd';
 import axios from 'axios';
-import {useParams} from "react-router-dom";
+import NewFeedback from '../newFeedback'
 
 const Feedback = () => {
     const params = useParams();
     const [data, setData] = useState("");
+    console.log(params)
     const url = `https://ka-users-api.herokuapp.com/users/${params.id}/feedbacks`;
 
     useEffect (() => {
@@ -17,7 +18,6 @@ const Feedback = () => {
                 }
             })
             .then(resp => { 
-              console.log(resp.data)
               setData(resp.data)
             })
             .catch((error) => { // erro no request
