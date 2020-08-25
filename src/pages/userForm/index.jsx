@@ -47,7 +47,9 @@ const tailFormItemLayout = {
 // const [ name, setName ] = useState("");
 
 const UserForm = () => {
+
   const [form] = Form.useForm();
+  const [autoCompleteResult, setAutoCompleteResult] = useState([]);
 
   const onFinish = values => {
     axios.post("https://ka-users-api.herokuapp.com/users", {
@@ -61,17 +63,15 @@ const UserForm = () => {
     }).
     then(console.log("sucess")).catch(error => console.log(error))
   }
+
   const prefixSelector = (
     <Form.Item name="prefix" noStyle>
-      <Select
-        style={{ width: 70 }}
-      >
+      <Select style={{ width: 70 }}>
         <Option value="86">+86</Option>
         <Option value="87">+87</Option>
       </Select>
     </Form.Item>
   );
-  const [autoCompleteResult, setAutoCompleteResult] = useState([]);
 
   const onWebsiteChange = value => {
     if (!value) {
@@ -85,6 +85,7 @@ const UserForm = () => {
     label: website,
     value: website,
   }));
+
   return (
     <Form
       {...formItemLayout}
