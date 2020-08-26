@@ -9,10 +9,7 @@ import axios from 'axios';
 const Users = (props) => {
   const url = "https://ka-users-api.herokuapp.com/users";
   const [data, setData] = useState([]);
-  useEffect(() => {
-    const id = data.id
-    console.log(data)
-  }, [data])
+  
   
   useEffect (() => {
     axios

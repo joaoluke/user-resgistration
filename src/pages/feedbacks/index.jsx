@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import ReactDOM from 'react-dom';
-import { Table } from 'antd';
+import { Link, Switch, Route } from 'react-router-dom';
+import { Table, Button } from 'antd';
 import axios from 'axios';
 import {useParams} from "react-router-dom";
 
@@ -11,8 +11,11 @@ const Feedback = () => {
 
     useEffect (() => {
         axios
-          .get(url, 
-            { headers: {Authorization: "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo1MzYsImV4cCI6MTYyOTU1ODkwNH0.g85VIjVCsBZ2DmtQY6JC4Difliypm7fi9R5Obe7FZbg"} })
+            .get(url, { 
+                headers: {
+                    Authorization: "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo1MzYsImV4cCI6MTYyOTU1ODkwNH0.g85VIjVCsBZ2DmtQY6JC4Difliypm7fi9R5Obe7FZbg"
+                }
+            })
             .then(resp => { 
               console.log(resp.data)
               setData(resp.data)
@@ -47,7 +50,15 @@ const Feedback = () => {
     ];
 
     return (
-        <Table dataSource={data} columns={columns}>nome</Table>
+        <>
+            <Switch>
+                <Route path="/newFeedbacks" component={NewFeedback} />
+            </Switch>
+            <Table dataSource={data} columns={columns}>nome</Table>
+            <Link to="/newFeedbacks">
+                <Button type="primary">Adicionar um comentário</Button>
+            </Link>
+        </>
     )
 }
 
