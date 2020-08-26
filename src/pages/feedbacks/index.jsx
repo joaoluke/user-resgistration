@@ -2,14 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Link, Switch, Route } from 'react-router-dom';
 import { Table, Button } from 'antd';
 import axios from 'axios';
-import NewFeedback from '../newFeedback';
-
-
+import {useParams} from "react-router-dom";
 
 const Feedback = () => {
-    const [data, setData] = useState([]);
-    const url = "https://ka-users-api.herokuapp.com/users/735/feedbacks";
-    
+    const params = useParams();
+    const [data, setData] = useState("");
+    const url = `https://ka-users-api.herokuapp.com/users/${params.id}/feedbacks`;
+
     useEffect (() => {
         axios
             .get(url, { 
@@ -26,6 +25,7 @@ const Feedback = () => {
             })
     },[])
   
+    
     const columns = [
         {
             title: 'ID',
