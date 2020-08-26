@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { Table } from 'antd';
 import axios from 'axios';
+import {useParams} from "react-router-dom";
 
 const Feedback = () => {
+    const params = useParams();
     const [data, setData] = useState("");
-    const url = "https://ka-users-api.herokuapp.com/users/735/feedbacks";
+    const url = `https://ka-users-api.herokuapp.com/users/${params.id}/feedbacks`;
 
     useEffect (() => {
         axios
@@ -20,6 +22,7 @@ const Feedback = () => {
             })
     },[])
   
+    
     const columns = [
         {
             title: 'ID',

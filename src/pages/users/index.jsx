@@ -6,7 +6,7 @@ import axios from 'axios';
 
 
 
-const Users = () => {
+const Users = (props) => {
   const url = "https://ka-users-api.herokuapp.com/users";
   const [data, setData] = useState([]);
   useEffect(() => {
@@ -17,8 +17,10 @@ const Users = () => {
   useEffect (() => {
     axios
       .get(url, 
-        { headers: {Authorization: "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo1MzYsImV4cCI6MTYyOTU1ODkwNH0.g85VIjVCsBZ2DmtQY6JC4Difliypm7fi9R5Obe7FZbg"} })
+            { headers: {Authorization: "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo1MzYsImV4cCI6MTYyOTU1ODkwNH0.g85VIjVCsBZ2DmtQY6JC4Difliypm7fi9R5Obe7FZbg"} })
+        // { headers: {Authorization: props.token} })
         .then(resp => {
+          console.log(props.token)
           console.log(resp.data)
           setData(resp.data)
         })
@@ -32,25 +34,25 @@ const Users = () => {
   const columns = [
     {
       title: "id",
-      dataIndex: "id", //id, nome
+      dataIndex: "id", 
       key: 'id',
     },
 
     {
       title: "Nome",
-      dataIndex: "name", //id, nome
+      dataIndex: "name", 
       key: 'name',
     },
 
     {
       title: "Usuário",
-      dataIndex: "user", //id, nome
+      dataIndex: "user", 
       key: 'user',
     },
 
     {
       title: "E-mail",
-      dataIndex: "email", //id, nome
+      dataIndex: "email", 
       key: 'email',
     },
        
