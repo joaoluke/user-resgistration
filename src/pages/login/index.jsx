@@ -10,7 +10,7 @@ import './index.css'
 
 import axios from 'axios';
 
-const Login = ({token, setToken, SetAuthenticated, authenticated}) => {
+const Login = ({token, setToken, SetAuthenticated}) => {
   const history = useHistory();
   const [requestError, setRequestError] = useState("") //  Erro na requisição 
   
@@ -19,9 +19,11 @@ const Login = ({token, setToken, SetAuthenticated, authenticated}) => {
     axios 
       .post("https://ka-users-api.herokuapp.com/authenticate",values) 
       .then((res) => { 
+        //setItem ??
         localStorage.setItem("token", res.data.auth_token); //Grava o token(q é um objeto) no local "HD da maquina"
         setRequestError("");
         SetAuthenticated(true);
+        console.log(res.data.auth_token)
       })
       
       .catch((error) => {

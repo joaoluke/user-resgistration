@@ -52,7 +52,7 @@ const Feedback = () => {
     return (
         <>
             <Switch>
-                <Route path="/newFeedbacks" component={NewFeedback} />
+                {/* <Route path="/newFeedbacks" component={NewFeedback} /> */}
             </Switch>
             <Table dataSource={data} columns={columns}>nome</Table>
             <Link to="/newFeedbacks">

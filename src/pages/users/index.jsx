@@ -14,10 +14,15 @@ const Users = (props) => {
   useEffect (() => {
     axios
       .get(url, 
-            { headers: {Authorization: "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo1MzYsImV4cCI6MTYyOTU1ODkwNH0.g85VIjVCsBZ2DmtQY6JC4Difliypm7fi9R5Obe7FZbg"} })
-        // { headers: {Authorization: props.token} })
+           //{ headers: {Authorization: "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo1MzYsImV4cCI6MTYyOTU1ODkwNH0.g85VIjVCsBZ2DmtQY6JC4Difliypm7fi9R5Obe7FZbg"} })
+          // { headers: {Authorization: props.token} } 
+           { headers: {Authorization: localStorage.getItem("token")} }
+         )
+        
         .then(resp => {
-          console.log(props.token)
+
+          console.log("props Token" + props.token)
+          console.log(localStorage.getItem("token"))
           console.log(resp.data)
           setData(resp.data)
         })
