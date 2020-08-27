@@ -28,6 +28,16 @@ const App = () => {
             <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
               <Menu.Item key="1"><Link to="/userForm">Cadastre-se</Link></Menu.Item>
               <Menu.Item key="2"><Link to="/">Login</Link></Menu.Item>
+
+              {authenticated && (
+                  <Menu.Item onClick={()=>{
+                  localStorage.removeItem('token');
+                  SetAuthenticated(false);
+                  history.push("/")
+                  }}   >LOGOUT  </Menu.Item>
+                )
+              }
+           
             </Menu>
           </Header>
 
@@ -45,7 +55,7 @@ const App = () => {
             )} />
 
             <Route exact path="/" render={() => (
-              <Login  token={token} setToken={setToken} authenticated={authenticated} SetAuthenticated={SetAuthenticated} /> //props
+              <Login  token={token} authenticated={authenticated} SetAuthenticated={SetAuthenticated} /> //props
             )} /> {/* substitui o component={Login} pelo render pra poder passar as props */}
           
           </Switch>
